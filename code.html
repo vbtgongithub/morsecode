@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>C Program - Morse Converter</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #00FF41;
+      font-family: 'Courier New', monospace;
+      padding: 20px;
+    }
+    pre {
+      white-space: pre-wrap;
+      background: #000;
+      padding: 20px;
+      border: 1px solid #00FF41;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>C Program - Morse Code Converter</h1>
+  <pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+char* morse[] = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
+                  "....", "..", ".---", "-.-", ".-..", "--", "-.",
+                  "---", ".--.", "--.-", ".-.", "...", "-", "..-",
+                  "...-", ".--", "-..-", "-.--", "--..", "-----", 
+                  ".----", "..---", "...--", "....-", ".....", 
+                  "-....", "--...", "---..", "----." };
+
+char letters[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+void toMorse(char* text) {
+    for(int i = 0; text[i]; i++) {
+        char ch = toupper(text[i]);
+        if(ch == ' ') printf("/ ");
+        else {
+            char* ptr = strchr(letters, ch);
+            if(ptr) printf("%s ", morse[ptr - letters]);
+        }
+    }
+}
+
+int main() {
+    char input[100];
+    printf("Enter text: ");
+    gets(input);
+    printf("Morse Code: ");
+    toMorse(input);
+    return 0;
+}
+  </pre>
+</body>
+</html>
